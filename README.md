@@ -1,10 +1,10 @@
 # php_csvRead
-Simple class to work with data from csv files.
+Simple class to work with data from csv files.  
 You can see the columns names, all rows or specific columns from a specific row.
 
-How to:
-The namespace is CsvRead;
-Instantiate the class by entering the path with file name. If delimiter is different of ';' you must specify when instanciate the class:
+How to:  
+The namespace is CsvRead;  
+Instantiate the class by entering the path with file name. If delimiter is different of ';' you must specify when instanciate the class:  
  $file = '../uploads/file.csv';  
  $csvRead = new CsvRead($file, ',');  
  
