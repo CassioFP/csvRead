@@ -1,5 +1,5 @@
-# php_csvRead
-Simple class to work with data from csv files.  
+# csvRead
+Simple PHP class to work with data from csv files.  
 You can see the columns names, all rows or specific columns from a specific row.
 
 How to:  
