@@ -7,10 +7,11 @@ use Exception;
 class CsvRead
 {
     private $pathFile;
-    private $delimiter;
+    private $delimiter = ';';
     private $hasColumnsName = true;
     private $rows;
     private $columnsName;
+    private $skipEmptyRows = true;
 
     /**
      * Receive a path with file name and columns delimiter
@@ -20,7 +21,15 @@ class CsvRead
     public function __construct($pathFile, $delimiter)
     {
         $this->pathFile = $pathFile;
-        $this->delimiter = $delimiter ?: ';';
+    }
+
+    /**
+     * Use false to mantain the empty rows
+     */
+    public function setSkipEmptyRows($skip)
+    {
+        $this->skipEmptyRows = $skip;
+        return $this;
     }
 
     /**
@@ -81,7 +90,14 @@ class CsvRead
     {
         $indexed = [];
         foreach($rows as $row) {
-            if(!$row) continue;
+            if(!$row && $this->skipEmptyRows === true) {
+                continue;
+            }
+
+            if(!$row && $this->skipEmptyRows === false) {
+                $indexed[] = [];
+                continue;
+            }
 
             $csvLine = str_getcsv($row, $this->delimiter);
             $indexed[] = $this->columnsName ? array_combine($this->columnsName, $csvLine) : $csvLine;
